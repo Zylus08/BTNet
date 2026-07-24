@@ -22,21 +22,29 @@ android {
     kotlinOptions { jvmTarget = "17" }
 }
 
+// Extract libs before protobuf block to avoid Kotlin DSL scope resolution issues
+val projectLibs = libs
+
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
+        artifact = projectLibs.protobuf.protoc.get().toString()
     }
     generateProtoTasks {
         all().forEach { task ->
             task.builtins {
-                create("java") { option("lite") }
-                create("kotlin") { option("lite") }
+                id("java") {
+                    option("lite")
+                }
+                id("kotlin") {
+                    option("lite")
+                }
             }
         }
     }
 }
 
 dependencies {
+    implementation(libs.protobuf.javalite)
     implementation(libs.protobuf.kotlin.lite)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

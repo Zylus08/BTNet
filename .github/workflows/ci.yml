@@ -20,16 +20,20 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-          cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
 
       - name: Run Detekt (Static Analysis)
-        run: ./gradlew detekt
+        run: ./gradlew detekt --continue
 
       - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest --continue
 
       - name: Run Simulator Benchmarks
-        run: ./gradlew :benchmark:runBenchmarks
+        run: ./gradlew :benchmark:runBenchmarks --continue
         
       - name: Assemble Debug APK
         run: ./gradlew assembleDebug
@@ -46,6 +50,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
           
       - name: Install MkDocs Material
         run: |
@@ -53,4 +58,4 @@ jobs:
           pip install pymdown-extensions
           
       - name: Build Docs
-        run: mkdocs build
+        run: mkdocs build --strict
