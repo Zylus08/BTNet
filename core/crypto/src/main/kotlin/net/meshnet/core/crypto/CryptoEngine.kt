@@ -148,6 +148,24 @@ class CryptoEngine @Inject constructor() {
         verifier: com.google.crypto.tink.PublicKeyVerify,
     ) = verifier.verify(signature, data)
 
+    /**
+     * Verifies an Ed25519 [signature] over [data] using a raw 32-byte public key.
+     */
+    fun verifyRaw(
+        data: ByteArray,
+        signature: ByteArray,
+        rawPublicKey: ByteArray,
+    ): Boolean {
+        require(rawPublicKey.size == 32) { "Ed25519 public key must be 32 bytes" }
+        return try {
+            val verifier = com.google.crypto.tink.subtle.Ed25519Verify(rawPublicKey)
+            verifier.verify(signature, data)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     // ── Private helpers ───────────────────────────────────────────────────────
 
     @Suppress("TooGenericExceptionCaught")
