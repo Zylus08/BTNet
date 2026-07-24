@@ -18,6 +18,12 @@ sealed interface MeshEvent {
 
     // ── Transport events ──────────────────────────────────────────────────────
 
+    /** Intent to transfer a large file to a peer, triggers transport upgrade. */
+    data class FileTransferInitiated(val targetPeer: Peer, val fileId: String, val sizeBytes: Long) : MeshEvent
+    
+    /** Request to upgrade transport connection to a specific peer. */
+    data class TransportUpgradeRequested(val targetPeer: Peer, val targetTransportId: String) : MeshEvent
+
     /** A packet was received from [from] on transport [transportId]. */
     data class PacketReceived(
         val packet: MeshPacket,
