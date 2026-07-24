@@ -7,6 +7,8 @@ compose-bom         = "2024.06.00"
 compose-compiler    = "1.5.14"
 hilt                = "2.51.1"
 room                = "2.6.1"
+sqlcipher           = "4.5.4"
+sqlite              = "2.4.0"
 tink                = "1.14.1"
 protobuf-plugin     = "0.9.4"
 protobuf            = "4.27.2"
@@ -61,6 +63,8 @@ room-runtime               = { module = "androidx.room:room-runtime", version.re
 room-ktx                   = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler              = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-testing               = { module = "androidx.room:room-testing", version.ref = "room" }
+sqlite                     = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
+sqlcipher                  = { module = "net.zetetic:android-database-sqlcipher", version.ref = "sqlcipher" }
 
 # Crypto / Security
 tink-android               = { module = "com.google.crypto.tink:tink-android", version.ref = "tink" }
@@ -128,7 +132,7 @@ benchmark                  = { id = "androidx.benchmark", version.ref = "benchma
 coroutines                 = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
 compose                    = ["compose-ui", "compose-ui-graphics", "compose-ui-tooling-preview", "compose-material3"]
 compose-debug              = ["compose-ui-tooling", "compose-test-manifest"]
-room                       = ["room-runtime", "room-ktx"]
+room                       = ["room-runtime", "room-ktx", "sqlite", "sqlcipher"]
 lifecycle                  = ["lifecycle-viewmodel-ktx", "lifecycle-runtime-ktx", "lifecycle-runtime-compose"]
 testing-unit               = ["junit-jupiter", "mockk", "kotlinx-coroutines-test"]
 testing-android            = ["mockk-android", "espresso-core", "androidx-test-runner", "compose-test-junit4"]
