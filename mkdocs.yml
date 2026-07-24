@@ -1,0 +1,30 @@
+site_name: MeshNet Technical Specification
+site_description: Decentralized, offline, encrypted mesh communication framework for Android.
+site_author: MeshNet Core Team
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: light blue
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
+
+nav:
+  - Introduction: index.md
+  - Architecture: architecture.md
+  - Protocol Specification: protocol-spec.md
+  - Cryptography: cryptography.md
+  - Threat Model: threat-model.md
+  - Routing & Simulator: routing-simulator.md
+  - API Reference: api-reference.md
