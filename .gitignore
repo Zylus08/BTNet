@@ -42,3 +42,6 @@ gradle/wrapper/gradle-wrapper.jar
 
 # Logs
 *.log
+
+gradle.zip
+gradle-*/
