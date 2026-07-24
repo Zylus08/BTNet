@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package meshnet;
+
+option java_package = "net.meshnet.core.protocol";
+option java_outer_classname = "MeshPacketProto";
+option java_multiple_files = true;
+
+import "meshnet/capabilities.proto";
+
+/**
+ * Wire format for all packets traversing the MeshNet.
+ *
+ * Pipeline (outbound):
+ *   plaintext → LZ4 (if capabilities.compression) → AES-256-GCM → Ed25519 sign → send
+ *
+ * Fields 1–13 are covered by the Ed25519 signature in field 14.
+ */
+message MeshPacket {
+  // ── Protocol metadata ─────────────────────────────────────────────────────
+  uint32 protocol_version  = 1;  // increments on breaking changes; current = 1
+  uint32 packet_version    = 2;  // schema version; allows field evolution
+  Capabilities capabilities = 3; // sender capabilities; drives peer negotiation
+
+  // ── Addressing ────────────────────────────────────────────────────────────
+  bytes packet_id          = 4;  // 16-byte UUID; used for dedup / bloom filter
+  bytes sender_id          = 5;  // 32-byte Ed25519 public key (ephemeral)
+  bytes recipient_id       = 6;  // 32-byte pub key; all-zeros = broadcast
+
+  // ── Routing ───────────────────────────────────────────────────────────────
+  uint32 ttl               = 7;  // remaining hop budget; decremented per hop
+  int64  timestamp_ms      = 8;  // unix millis; used for replay window
+  uint32 hop_count         = 9;  // incremented per hop; informational
+
+  // ── Payload ───────────────────────────────────────────────────────────────
+  PacketType type          = 10;
+  bytes  payload           = 11; // encrypted (and optionally LZ4-compressed) body
+  bytes  nonce             = 12; // 12-byte AES-GCM nonce; unique per packet
+  bool   compressed        = 13; // true iff payload was LZ4-compressed before encryption
+
+  // ── Integrity ─────────────────────────────────────────────────────────────
+  bytes  signature         = 14; // Ed25519 signature over serialized fields 1–13
+}
+
+enum PacketType {
+  UNKNOWN          = 0;
+  MESSAGE          = 1;  // encrypted 1:1 or group message
+  ACK              = 2;  // delivery acknowledgement
+  REPORT           = 3;  // community safety report
+  PEER_ANNOUNCE    = 4;  // peer hello / capabilities broadcast
+  ROUTING_UPDATE   = 5;  // PRoPHET / gossip routing table delta
+  FILE_CHUNK       = 6;  // chunk of a file transfer
+  VOICE_CHUNK      = 7;  // Opus audio chunk
+  CAPABILITY_PROBE = 8;  // request peer to send PEER_ANNOUNCE
+}

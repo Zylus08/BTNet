@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package meshnet;
+
+option java_package = "net.meshnet.core.protocol";
+option java_outer_classname = "CapabilitiesProto";
+option java_multiple_files = true;
+
+/**
+ * Capabilities advertised by a peer on PEER_ANNOUNCE.
+ * Received before session establishment; drives transport and feature selection.
+ */
+message Capabilities {
+  bool wifi_direct    = 1;  // supports Wi-Fi Direct transport
+  bool file_transfer  = 2;  // supports chunked file transfer
+  bool voice          = 3;  // supports Opus voice notes
+  bool maps           = 4;  // has offline map tiles
+  bool compression    = 5;  // supports LZ4 payload compression
+  bool routing_v2     = 6;  // supports PRoPHET / Spray-and-Wait
+  bool image_messages = 7;  // supports inline image messages
+}

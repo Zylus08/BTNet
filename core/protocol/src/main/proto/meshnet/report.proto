@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package meshnet;
+
+option java_package = "net.meshnet.core.protocol";
+option java_outer_classname = "ReportProto";
+option java_multiple_files = true;
+
+/**
+ * Community safety report.
+ *
+ * Integrity: signed by originator Ed25519 key.
+ * Unsigned reports are silently dropped at every node.
+ * Expiry is mandatory and capped at 24 h.
+ */
+message Report {
+  bytes       report_id        = 1;  // 16-byte UUID
+  bytes       originator_id    = 2;  // Ed25519 public key of creator
+  ReportCategory category      = 3;
+  double      latitude         = 4;
+  double      longitude        = 5;
+  string      description      = 6;  // max 280 chars enforced by validator
+  int64       created_at_ms    = 7;  // unix millis
+  int64       expires_at_ms    = 8;  // unix millis; max created + 86400000
+  uint32      hop_origin_count = 9;  // hops from originator at creation
+  bytes       signature        = 10; // Ed25519 over fields 1-9
+}
+
+enum ReportCategory {
+  UNKNOWN_CATEGORY = 0;
+  ROAD_CLOSED      = 1;
+  MEDICAL          = 2;
+  FIRE             = 3;
+  FLOOD            = 4;
+  HEAVY_CROWD      = 5;
+  ACCESSIBILITY    = 6;
+  WATER            = 7;
+  SHELTER          = 8;
+  OBSTRUCTION      = 9;
+  HAZARD           = 10;
+}
+
+/**
+ * Sent by a witness node to corroborate an existing report.
+ * The witness signs its own observation independently.
+ */
+message ReportCorroboration {
+  bytes report_id     = 1;  // references Report.report_id
+  bytes witness_id    = 2;  // Ed25519 public key of witness
+  double latitude     = 3;  // witness observed location
+  double longitude    = 4;
+  int64 observed_at   = 5;  // unix millis
+  bytes signature     = 6;  // Ed25519 over fields 1-5
+}

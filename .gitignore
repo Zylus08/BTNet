@@ -1,0 +1,44 @@
+# Build outputs
+**/build/
+.gradle/
+local.properties
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Keys / secrets — NEVER commit
+*.keystore
+*.jks
+release.keystore
+keystore.properties
+
+# Kotlin
+*.class
+*.kotlin_module
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# Generated protobuf
+**/generated/
+
+# Room schemas (committed intentionally for migration tracking)
+# !**/schemas/**
+
+# Gradle wrapper jar (download on demand)
+gradle/wrapper/gradle-wrapper.jar
+
+# Benchmark profiling outputs
+**/benchmarkData/
+**/profileinstaller-*
+
+# Logs
+*.log

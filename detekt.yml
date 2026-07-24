@@ -1,0 +1,115 @@
+severity: error
+build:
+  maxIssues: 0
+
+complexity:
+  active: true
+  ComplexMethod:
+    threshold: 15
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 10
+  CyclomaticComplexMethod:
+    threshold: 15
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 15
+    thresholdInInterfaces: 10
+
+coroutines:
+  active: true
+  GlobalCoroutineUsage:
+    active: true
+  RedundantSuspendModifier:
+    active: true
+  SleepInsteadOfDelay:
+    active: true
+
+empty-blocks:
+  active: true
+
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: true
+    exceptionNames:
+      - Error
+      - Exception
+      - RuntimeException
+      - Throwable
+    allowedExceptionNameRegex: _|(ignore|expected).*
+  TooGenericExceptionThrown:
+    active: true
+
+naming:
+  active: true
+  ClassNaming:
+    classPattern: '[A-Z][a-zA-Z0-9]*'
+  FunctionNaming:
+    functionPattern: '[a-z][a-zA-Z0-9]*'
+  VariableNaming:
+    variablePattern: '[a-z][A-Za-z0-9]*'
+
+performance:
+  active: true
+  ArrayPrimitive:
+    active: true
+  ForEachOnRange:
+    active: true
+
+potential-bugs:
+  active: true
+  AvoidReferentialEquality:
+    active: true
+  DontDowncastCollectionTypes:
+    active: true
+  EqualsAlwaysReturnsTrueOrFalse:
+    active: true
+  ExplicitGarbageCollectionCall:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+  InvalidRange:
+    active: true
+  IteratorHasNextCallsNextMethod:
+    active: true
+  IteratorNotThrowingNoSuchElementException:
+    active: true
+  MapGetWithNotNullAssertionOperator:
+    active: true
+  MissingWhenCase:
+    active: true
+  RedundantElseInWhen:
+    active: true
+  UnconditionalJumpStatementInLoop:
+    active: true
+  UnnecessaryNotNullOperator:
+    active: true
+  UnnecessarySafeCall:
+    active: true
+  UnreachableCode:
+    active: true
+  UnsafeCast:
+    active: true
+  UnsafeCallOnNullableType:
+    active: true
+  UselessPostfixExpression:
+    active: true
+  WrongEqualsTypeParameter:
+    active: true
+
+style:
+  active: true
+  ForbiddenComment:
+    active: true
+    values: ['FIXME:', 'STOPSHIP:']
+  MaxLineLength:
+    maxLineLength: 120
+  ReturnCount:
+    max: 3
+  UnusedImports:
+    active: true
+  WildcardImport:
+    active: true

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package meshnet;
+
+option java_package = "net.meshnet.core.protocol";
+option java_outer_classname = "FileChunkProto";
+option java_multiple_files = true;
+
+/**
+ * Chunked file transfer.
+ *
+ * Protocol:
+ *   1. Sender splits file into N chunks of ≤4096 bytes each.
+ *   2. SHA-256 computed per chunk and over the complete reassembled file.
+ *   3. Each chunk transmitted as a MeshPacket with type = FILE_CHUNK.
+ *   4. Receiver tracks received chunk indices; requests missing by index only.
+ *   5. On completion, receiver verifies file_hash; discards on mismatch.
+ */
+message FileChunk {
+  bytes  transfer_id  = 1;  // 16-byte UUID grouping all chunks for one transfer
+  uint32 chunk_index  = 2;  // 0-based
+  uint32 total_chunks = 3;
+  bytes  chunk_hash   = 4;  // SHA-256 of this chunk's raw bytes
+  bytes  file_hash    = 5;  // SHA-256 of the complete file (same in all chunks)
+  string mime_type    = 6;  // e.g. "image/jpeg", "application/octet-stream"
+  string file_name    = 7;  // original filename; sanitised before use
+  uint64 total_bytes  = 8;  // complete file size in bytes
+  bytes  data         = 9;  // raw chunk bytes
+}
+
+/** Sent by receiver to request retransmission of missing chunks. */
+message ChunkRequest {
+  bytes           transfer_id    = 1;
+  repeated uint32 missing_chunks = 2;
+}
