@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Core -->
+    <string name="app_name">MeshNet</string>
+    <string name="notification_channel_mesh">Mesh Network Status</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title">Welcome to MeshNet</string>
+    <string name="onboarding_desc">Decentralized, offline communication for when the internet fails.</string>
+    <string name="btn_generate_identity">Generate Identity</string>
+
+    <!-- Navigation -->
+    <string name="nav_chat">Chat</string>
+    <string name="nav_peers">Peers</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Chat -->
+    <string name="chat_encrypted_indicator">End-to-End Encrypted</string>
+    <string name="chat_input_hint">Message...</string>
+    <string name="chat_status_sent">Sent</string>
+    <string name="chat_status_delivered">Delivered</string>
+</resources>
