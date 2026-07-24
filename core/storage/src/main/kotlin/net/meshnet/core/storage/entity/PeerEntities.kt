@@ -3,13 +3,17 @@ package net.meshnet.core.storage.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "peers")
+@Entity(
+    tableName = "peers",
+    indices = [androidx.room.Index("geohash")]
+)
 data class PeerEntity(
     @PrimaryKey val id: String, // Hex string of public key
     val alias: String?,
     val lastSeenTimestamp: Long,
     val capabilities: Int, // Bitmask
-    val wifiDirectMac: String?
+    val wifiDirectMac: String?,
+    val geohash: String? // Nullable as peer may not broadcast location
 )
 
 @Entity(tableName = "trust_scores")
