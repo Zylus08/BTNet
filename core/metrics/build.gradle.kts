@@ -6,13 +6,9 @@ plugins {
 }
 
 android {
-    namespace = "net.meshnet.core.routing"
+    namespace = "net.meshnet.core.metrics"
     compileSdk = 34
-    defaultConfig {
-        minSdk = 26
-        consumerProguardFiles("consumer-rules.pro")
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    defaultConfig { minSdk = 26 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -22,16 +18,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:protocol"))
-    implementation(project(":core:mesh"))
     implementation(project(":core:events"))
-    implementation(project(":core:metrics"))
-    implementation(project(":core:storage"))
-    implementation(libs.work.runtime.ktx)
     implementation(libs.hilt.android)
     implementation(libs.kotlinx.coroutines.core)
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.coroutines.test)
 }

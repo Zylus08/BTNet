@@ -33,8 +33,12 @@ include(":core:storage")
 include(":core:protocol")
 include(":core:maps")
 include(":core:sync")
-include(":core:trust")
 include(":core:security")
+include(":core:trust")
+include(":core:metrics")
+include(":core:events")
+include(":core:flags")
+include(":simulator")
 
 // Feature modules
 include(":feature:chat")

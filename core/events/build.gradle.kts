@@ -4,15 +4,10 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
-
 android {
-    namespace = "net.meshnet.core.routing"
+    namespace = "net.meshnet.core.events"
     compileSdk = 34
-    defaultConfig {
-        minSdk = 26
-        consumerProguardFiles("consumer-rules.pro")
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    defaultConfig { minSdk = 26 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -20,14 +15,7 @@ android {
     kotlinOptions { jvmTarget = "17" }
     testOptions { unitTests { all { it.useJUnitPlatform() } } }
 }
-
 dependencies {
-    implementation(project(":core:protocol"))
-    implementation(project(":core:mesh"))
-    implementation(project(":core:events"))
-    implementation(project(":core:metrics"))
-    implementation(project(":core:storage"))
-    implementation(libs.work.runtime.ktx)
     implementation(libs.hilt.android)
     implementation(libs.kotlinx.coroutines.core)
     ksp(libs.hilt.compiler)
