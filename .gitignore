@@ -34,7 +34,8 @@ Thumbs.db
 # !**/schemas/**
 
 # Gradle wrapper jar (download on demand)
-gradle/wrapper/gradle-wrapper.jar
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 # Benchmark profiling outputs
 **/benchmarkData/
