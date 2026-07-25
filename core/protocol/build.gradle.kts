@@ -29,13 +29,14 @@ protobuf {
     protoc {
         artifact = projectLibs.protobuf.protoc.get().toString()
     }
+
     generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
-                id("java") {
+        all().configureEach {
+            builtins {
+                maybeCreate("java").apply {
                     option("lite")
                 }
-                id("kotlin") {
+                maybeCreate("kotlin").apply {
                     option("lite")
                 }
             }
