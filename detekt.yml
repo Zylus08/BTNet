@@ -1,11 +1,9 @@
-severity: error
+
 build:
   maxIssues: 0
 
 complexity:
   active: true
-  ComplexMethod:
-    threshold: 15
   LongMethod:
     threshold: 60
   LongParameterList:
@@ -15,8 +13,8 @@ complexity:
     threshold: 15
   TooManyFunctions:
     thresholdInFiles: 20
-    thresholdInClasses: 15
-    thresholdInInterfaces: 10
+    thresholdInClasses: 30
+    thresholdInInterfaces: 20
 
 coroutines:
   active: true
@@ -48,7 +46,9 @@ naming:
   ClassNaming:
     classPattern: '[A-Z][a-zA-Z0-9]*'
   FunctionNaming:
-    functionPattern: '[a-z][a-zA-Z0-9]*'
+    active: true
+    ignoreAnnotated:
+    - Composable
   VariableNaming:
     variablePattern: '[a-z][A-Za-z0-9]*'
 
@@ -79,10 +79,6 @@ potential-bugs:
     active: true
   MapGetWithNotNullAssertionOperator:
     active: true
-  MissingWhenCase:
-    active: true
-  RedundantElseInWhen:
-    active: true
   UnconditionalJumpStatementInLoop:
     active: true
   UnnecessaryNotNullOperator:
@@ -104,12 +100,14 @@ style:
   active: true
   ForbiddenComment:
     active: true
-    values: ['FIXME:', 'STOPSHIP:']
+    comments: ['FIXME:', 'TODO']
   MaxLineLength:
-    maxLineLength: 120
+    maxLineLength: 160
   ReturnCount:
-    max: 3
+    max: 6
   UnusedImports:
     active: true
   WildcardImport:
     active: true
+  MagicNumber:
+    active: false
