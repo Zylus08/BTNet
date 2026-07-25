@@ -43,5 +43,16 @@ gradle/wrapper/gradle-wrapper.jar
 # Logs
 *.log
 
-gradle.zip
+# Local Gradle distribution
 gradle-*/
+gradle.zip
+
+# IDE
+.vscode/
+
+# Gradle cache
+.gradle/
+
+# Build outputs
+build/
+**/build/
