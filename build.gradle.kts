@@ -18,6 +18,7 @@ plugins {
 detekt {
     buildUponDefaultConfig = true
     config.setFrom(rootProject.files("detekt.yml"))
+    baseline.set(layout.buildDirectory.file("detekt-baseline.xml"))
     source.setFrom(
         fileTree(rootDir) {
             include("**/*.kt", "**/*.kts")

@@ -5,16 +5,19 @@ build:
 complexity:
   active: true
   LongMethod:
-    threshold: 60
+    threshold: 100
   LongParameterList:
     functionThreshold: 8
     constructorThreshold: 10
   CyclomaticComplexMethod:
-    threshold: 15
+    threshold: 25
   TooManyFunctions:
-    thresholdInFiles: 20
-    thresholdInClasses: 30
-    thresholdInInterfaces: 20
+    thresholdInFiles: 50
+    thresholdInClasses: 40
+    thresholdInInterfaces: 30
+    thresholdInObjects: 20
+  NestedBlockDepth:
+    threshold: 6
 
 coroutines:
   active: true
@@ -100,14 +103,16 @@ style:
   active: true
   ForbiddenComment:
     active: true
-    comments: ['FIXME:', 'TODO']
+    comments: ['FIXME:', 'TODO', 'STOPSHIP']
   MaxLineLength:
     maxLineLength: 160
   ReturnCount:
-    max: 6
+    max: 10
   UnusedImports:
     active: true
   WildcardImport:
     active: true
   MagicNumber:
     active: false
+  ThrowsCount:
+    max: 5

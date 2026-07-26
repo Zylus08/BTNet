@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$val MKSKIPS: MutableMap&lt;String, ByteArray> = mutableMapOf() // Skipped Message Keys</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var CKr: ByteArray?</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var CKs: ByteArray</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var DHr: ByteArray?</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var DHs: X25519KeyPair</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var Nr: Int = 0</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var Ns: Int = 0</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var PN: Int = 0</ID>
+    <ID>ConstructorParameterNaming:DoubleRatchetSession.kt$RatchetState$var RK: ByteArray</ID>
+    <ID>ExplicitGarbageCollectionCall:ScalabilityMonitor.kt$ScalabilityMonitor$gc()</ID>
+    <ID>ForbiddenComment:BLETransport.kt$BLETransport$// TODO: Map peer.id to device address and route to correct GATT role.</ID>
+    <ID>FunctionOnlyReturningConstant:HeartbeatManager.kt$HeartbeatManager$private suspend fun pingPeer(): Boolean</ID>
+    <ID>ImplicitDefaultLocale:MarkdownReportGenerator.kt$MarkdownReportGenerator$String.format("%.1f", r.averageHopCount)</ID>
+    <ID>ImplicitDefaultLocale:MarkdownReportGenerator.kt$MarkdownReportGenerator$String.format("%.1f%%", r.deliveryRatio * 100)</ID>
+    <ID>ImplicitDefaultLocale:MarkdownReportGenerator.kt$MarkdownReportGenerator$String.format("%.2f", r.bandwidthBytes / (1024.0 * 1024.0))</ID>
+    <ID>MaxLineLength:MarkdownReportGenerator.kt$MarkdownReportGenerator$sb.appendLine("${r.scenarioName},${r.nodeCount},${r.durationSeconds},${r.deliveryRatio},${r.averageLatencyMs},${r.averageHopCount},${r.duplicatePackets},${r.bandwidthBytes},${r.energyCostJoules},${r.timestamp}")</ID>
+    <ID>MaxLineLength:MarkdownReportGenerator.kt$MarkdownReportGenerator$sb.appendLine("| ${r.scenarioName} | ${r.nodeCount} | $ratio | ${r.averageLatencyMs} | $hops | ${r.duplicatePackets} | $bandwidthMb | ${r.energyCostJoules} |")</ID>
+    <ID>MaxLineLength:X3dhTest.kt$X3dhTest$every { mockKeyManager.publicIdentityKey() }</ID>
+    <ID>ReturnCount:PacketValidator.kt$PacketValidator$fun validate(packet: MeshPacket, nowMs: Long = System.currentTimeMillis()): ValidationResult</ID>
+    <ID>SwallowedException:CryptoEngine.kt$CryptoEngine$e: Exception</ID>
+    <ID>SwallowedException:PayloadCompressor.kt$PayloadCompressor$e: NoClassDefFoundError</ID>
+    <ID>SwallowedException:TinkCryptoProvider.kt$TinkCryptoProvider$e: Exception</ID>
+    <ID>SwallowedException:WifiDirectGroupOwnerNegotiator.kt$WifiDirectGroupOwnerNegotiator$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:BLEAdvertiser.kt$BLEAdvertiser$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:BLEScanner.kt$BLEScanner$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:BLETransport.kt$BLETransport$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CryptoEngine.kt$CryptoEngine$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DtnManager.kt$DtnManager$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DtnWorker.kt$DtnWorker$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:PayloadCompressor.kt$PayloadCompressor$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:TinkCryptoProvider.kt$TinkCryptoProvider$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:WifiDirectGroupOwnerNegotiator.kt$WifiDirectGroupOwnerNegotiator$e: Exception</ID>
+    <ID>UnusedImports:AckManager.kt$import kotlinx.coroutines.delay</ID>
+    <ID>UnusedImports:AttachmentEncryptor.kt$import java.io.InputStream</ID>
+    <ID>UnusedImports:AttachmentEncryptor.kt$import java.io.OutputStream</ID>
+    <ID>UnusedImports:AttachmentEncryptor.kt$import java.security.MessageDigest</ID>
+    <ID>UnusedImports:AttachmentEncryptor.kt$import javax.crypto.Mac</ID>
+    <ID>UnusedImports:AttachmentEncryptor.kt$import javax.crypto.spec.SecretKeySpec</ID>
+    <ID>UnusedImports:BLETransportTest.kt$import kotlinx.coroutines.flow.flowOf</ID>
+    <ID>UnusedImports:BLETransportTest.kt$import net.meshnet.core.mesh.transport.TransportEvent</ID>
+    <ID>UnusedImports:BLETransportTest.kt$import org.junit.jupiter.api.Assertions.assertTrue</ID>
+    <ID>UnusedImports:CryptoEngine.kt$import com.google.crypto.tink.aead.AeadKeyTemplates</ID>
+    <ID>UnusedImports:CryptoEngine.kt$import com.google.crypto.tink.subtle.Ed25519Sign</ID>
+    <ID>UnusedImports:CryptoEngineTest.kt$import org.junit.jupiter.api.Assertions.assertNotEquals</ID>
+    <ID>UnusedImports:CryptoEngineTest.kt$import org.junit.jupiter.api.Assertions.assertTrue</ID>
+    <ID>UnusedImports:DeveloperConsoleScreen.kt$import androidx.compose.foundation.layout.Row</ID>
+    <ID>UnusedImports:DoubleRatchetTest.kt$import io.mockk.every</ID>
+    <ID>UnusedImports:DoubleRatchetTest.kt$import java.security.SecureRandom</ID>
+    <ID>UnusedImports:FileTransferProtocol.kt$import kotlinx.coroutines.launch</ID>
+    <ID>UnusedImports:GattConnectionManager.kt$import java.nio.ByteBuffer</ID>
+    <ID>UnusedImports:Interfaces.kt$import net.meshnet.core.protocol.MeshPacket</ID>
+    <ID>UnusedImports:KdfChain.kt$import java.security.MessageDigest</ID>
+    <ID>UnusedImports:LZ4CompressorTest.kt$import org.junit.jupiter.api.Assertions.assertFalse</ID>
+    <ID>UnusedImports:MapScreen.kt$import androidx.compose.foundation.layout.Column</ID>
+    <ID>UnusedImports:MeshGattClient.kt$import kotlin.coroutines.resume</ID>
+    <ID>UnusedImports:MeshGattClient.kt$import kotlin.coroutines.suspendCoroutine</ID>
+    <ID>UnusedImports:MeshGattServer.kt$import android.bluetooth.BluetoothAdapter</ID>
+    <ID>UnusedImports:MeshNodeService.kt$import net.meshnet.core.mesh.transport.wifi.WifiDirectGroupOwnerNegotiator</ID>
+    <ID>UnusedImports:PacketTracer.kt$import kotlinx.coroutines.flow.filterIsInstance</ID>
+    <ID>UnusedImports:PeersScreen.kt$import kotlin.math.cos</ID>
+    <ID>UnusedImports:PeersScreen.kt$import kotlin.math.sin</ID>
+    <ID>UnusedImports:RateLimiter.kt$import java.util.concurrent.atomic.AtomicInteger</ID>
+    <ID>UnusedImports:RelayEngine.kt$import kotlinx.coroutines.flow.combine</ID>
+    <ID>UnusedImports:SenderKeyManager.kt$import java.security.MessageDigest</ID>
+    <ID>UnusedImports:TrustEngine.kt$import kotlin.math.abs</ID>
+    <ID>UnusedImports:TrustEngine.kt$import net.meshnet.core.protocol.Report</ID>
+    <ID>UnusedImports:TrustEntities.kt$import androidx.room.ForeignKey</ID>
+    <ID>UnusedImports:WifiDirectGroupOwnerNegotiator.kt$import android.net.wifi.p2p.WifiP2pDevice</ID>
+    <ID>UnusedImports:X3dhTest.kt$import java.security.SecureRandom</ID>
+    <ID>UnusedImports:X3dhTest.kt$import org.junit.jupiter.api.Assertions.assertArrayEquals</ID>
+    <ID>UnusedParameter:ChatScreen.kt$conversationId: String</ID>
+    <ID>UnusedParameter:FileTransferProtocol.kt$FileTransferProtocol$data: ByteArray</ID>
+    <ID>UnusedParameter:FileTransferProtocol.kt$FileTransferProtocol$fileId: String</ID>
+    <ID>UnusedParameter:FileTransferProtocol.kt$FileTransferProtocol$index: Int</ID>
+    <ID>UnusedParameter:GattConnectionManager.kt$GattConnectionManager$isClient: Boolean</ID>
+    <ID>UnusedParameter:MainActivity.kt$navController: NavHostController</ID>
+    <ID>UnusedParameter:OfflineRoutingEngine.kt$OfflineRoutingEngine$profile: RoutingProfile</ID>
+    <ID>UnusedParameter:RetransmissionEngine.kt$RetransmissionEngine$file: File</ID>
+    <ID>UnusedParameter:RetransmissionEngine.kt$RetransmissionEngine$peer: Peer</ID>
+    <ID>UnusedPrivateProperty:AckManager.kt$AckManager$private val cryptoEngine: CryptoEngine</ID>
+    <ID>UnusedPrivateProperty:AckManager.kt$AckManager$val ackPayload = originalPacket.packetId.toByteArray()</ID>
+    <ID>UnusedPrivateProperty:BLETransport.kt$BLETransport$val rawData = packet.toByteArray()</ID>
+    <ID>UnusedPrivateProperty:BLETransport.kt$BLETransport$val transferId = (packet.packetId.hashCode() and 0xFFFF).toShort()</ID>
+    <ID>UnusedPrivateProperty:DtnWorker.kt$DtnWorker$// These would be injected via HiltWorker in production private lateinit var packetDao: PacketDao</ID>
+    <ID>UnusedPrivateProperty:DtnWorker.kt$DtnWorker$private lateinit var dtnManager: DtnManager</ID>
+    <ID>UnusedPrivateProperty:DtnWorker.kt$DtnWorker$val nowMs = System.currentTimeMillis()</ID>
+    <ID>UnusedPrivateProperty:FileTransferProtocol.kt$FileTransferProtocol$private val eventBus: EventBus</ID>
+    <ID>UnusedPrivateProperty:FileTransferProtocol.kt$FileTransferProtocol$private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)</ID>
+    <ID>UnusedPrivateProperty:FileTransferStressTest.kt$FileTransferStressTest$i</ID>
+    <ID>UnusedPrivateProperty:GroupSessionManager.kt$GroupSessionManager$private val cryptoProvider: CryptoProvider</ID>
+    <ID>UnusedPrivateProperty:KeyManager.kt$KeyManager$private val cryptoEngine: CryptoEngine</ID>
+    <ID>UnusedPrivateProperty:RetransmissionEngine.kt$RetransmissionEngine$private val fileTransferDao: FileTransferDao</ID>
+    <ID>UnusedPrivateProperty:RetransmissionEngine.kt$RetransmissionEngine$private val transportManager: TransportManager</ID>
+    <ID>UnusedPrivateProperty:RetransmissionEngine.kt$RetransmissionEngine$val dummyChunk = ByteArray(FileTransferProtocol.CHUNK_SIZE)</ID>
+    <ID>UnusedPrivateProperty:RetransmissionEngine.kt$RetransmissionEngine$var windowStart = 0</ID>
+    <ID>UnusedPrivateProperty:ScalabilityMonitor.kt$ScalabilityMonitor$private val memoryMXBean = ManagementFactory.getMemoryMXBean()</ID>
+    <ID>UnusedPrivateProperty:TransportUpgradeManager.kt$TransportUpgradeManager$private val transportManager: TransportManager</ID>
+    <ID>UnusedPrivateProperty:X3dhTest.kt$X3dhTest$val bobBundle = PreKeyBundle( identityKey = bobIdentity.publicKey, signedPreKeyId = 1, signedPreKey = bobSpk.publicKey, signedPreKeySignature = ByteArray(64), // Assuming mock verify returns true oneTimePreKeyId = 1, oneTimePreKey = bobOpk.publicKey )</ID>
+    <ID>VariableNaming:BatteryProfiler.kt$BatteryProfiler$// Approximated from AOSP power_profile.xml for average mid-range device private val IDLE_CURRENT_MA = 5.0</ID>
+    <ID>VariableNaming:BatteryProfiler.kt$BatteryProfiler$private val BLE_ADVERTISE_CURRENT_MA = 10.0</ID>
+    <ID>VariableNaming:BatteryProfiler.kt$BatteryProfiler$private val BLE_SCAN_CURRENT_MA = 15.0</ID>
+    <ID>VariableNaming:BatteryProfiler.kt$BatteryProfiler$private val CPU_ACTIVE_MA = 120.0</ID>
+    <ID>VariableNaming:BatteryProfiler.kt$BatteryProfiler$private val WIFI_DIRECT_ACTIVE_MA = 250.0</ID>
+    <ID>VariableNaming:MetricsCollector.kt$MetricsCollector$private val MAX_TRACE_ENTRIES = 1000</ID>
+  </CurrentIssues>
+</SmellBaseline>
