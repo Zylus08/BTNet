@@ -30,6 +30,7 @@ work                = "2.9.0"
 datastore           = "1.1.1"
 security-crypto     = "1.1.0-alpha06"
 okio                = "3.9.0"
+material                    = "1.12.0"
 
 [libraries]
 # Kotlin
@@ -137,5 +138,4 @@ room                       = ["room-runtime", "room-ktx", "sqlite", "sqlcipher"]
 lifecycle                  = ["lifecycle-viewmodel-ktx", "lifecycle-runtime-ktx", "lifecycle-runtime-compose"]
 testing-unit               = ["junit-jupiter", "mockk", "kotlinx-coroutines-test"]
 testing-android            = ["mockk-android", "espresso-core", "androidx-test-runner", "compose-test-junit4"]
-material                    = "1.12.0"
-material = { module = "com.google.android.material:material", version.ref = "material" }
+material                   = { module = "com.google.android.material:material", version.ref = "material" }
