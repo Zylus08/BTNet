@@ -1,8 +1,5 @@
 package net.meshnet.core.crypto
 
-import com.google.crypto.tink.KeysetHandle
-import com.google.crypto.tink.aead.AeadConfig
-import com.google.crypto.tink.aead.AeadKeyTemplates
 import com.google.crypto.tink.hybrid.HybridConfig
 import com.google.crypto.tink.signature.SignatureConfig
 import com.google.crypto.tink.signature.SignatureKeyTemplates
@@ -11,6 +8,10 @@ import com.google.crypto.tink.subtle.Ed25519Verify
 import com.google.crypto.tink.subtle.X25519
 import javax.inject.Inject
 import javax.inject.Singleton
+import java.security.SecureRandom
+import javax.crypto.Cipher
+import javax.crypto.spec.GCMParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 /**
  * Provides all cryptographic operations required by MeshNet.
@@ -27,7 +28,6 @@ import javax.inject.Singleton
 class CryptoEngine @Inject constructor() {
 
     init {
-        AeadConfig.register()
         HybridConfig.register()
         SignatureConfig.register()
     }
@@ -47,14 +47,28 @@ class CryptoEngine @Inject constructor() {
         key: ByteArray,
         aad: ByteArray = ByteArray(0),
     ): EncryptResult {
-        require(key.size == AES_KEY_BYTES) { "Key must be $AES_KEY_BYTES bytes" }
-        val keysetHandle = buildAesGcmKeysetHandle(key)
-        val aead = keysetHandle.getPrimitive(com.google.crypto.tink.Aead::class.java)
-        // Tink prepends a 5-byte key ID + 12-byte nonce to the ciphertext; we extract below.
-        val ciphertext = aead.encrypt(plaintext, aad)
-        // First 5 bytes: Tink keyset prefix; next 12: nonce; remainder: actual ciphertext + tag
-        val nonce = ciphertext.copyOfRange(TINK_PREFIX_SIZE, TINK_PREFIX_SIZE + NONCE_BYTES)
-        return EncryptResult(ciphertext = ciphertext, nonce = nonce)
+
+        require(key.size == AES_KEY_BYTES)
+
+        val iv = ByteArray(NONCE_BYTES)
+        SecureRandom().nextBytes(iv)
+
+        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
+
+        val secretKey = SecretKeySpec(key, "AES")
+
+        val spec = GCMParameterSpec(128, iv)
+
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, spec)
+
+        cipher.updateAAD(aad)
+
+        val ciphertext = cipher.doFinal(plaintext)
+
+        return EncryptResult(
+            ciphertext = ciphertext,
+            nonce = iv,
+        )
     }
 
     /**
@@ -64,13 +78,24 @@ class CryptoEngine @Inject constructor() {
      */
     fun decrypt(
         ciphertext: ByteArray,
+        nonce: ByteArray,
         key: ByteArray,
         aad: ByteArray = ByteArray(0),
     ): ByteArray {
-        require(key.size == AES_KEY_BYTES) { "Key must be $AES_KEY_BYTES bytes" }
-        val keysetHandle = buildAesGcmKeysetHandle(key)
-        val aead = keysetHandle.getPrimitive(com.google.crypto.tink.Aead::class.java)
-        return aead.decrypt(ciphertext, aad)
+
+        require(key.size == AES_KEY_BYTES)
+
+        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
+
+        val secretKey = SecretKeySpec(key, "AES")
+
+        val spec = GCMParameterSpec(128, nonce)
+
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, spec)
+
+        cipher.updateAAD(aad)
+
+        return cipher.doFinal(ciphertext)
     }
 
     // ── X25519 ECDH ──────────────────────────────────────────────────────────
@@ -166,39 +191,9 @@ class CryptoEngine @Inject constructor() {
         }
     }
 
-    // ── Private helpers ───────────────────────────────────────────────────────
-
-    @Suppress("TooGenericExceptionCaught")
-    private fun buildAesGcmKeysetHandle(key: ByteArray): KeysetHandle {
-        // Wrap raw key bytes into a Tink AES-GCM keyset.
-        val keyData = com.google.crypto.tink.proto.KeyData.newBuilder()
-            .setTypeUrl("type.googleapis.com/google.crypto.tink.AesGcmKey")
-            .setValue(
-                com.google.crypto.tink.proto.AesGcmKey.newBuilder()
-                    .setKeyValue(com.google.protobuf.ByteString.copyFrom(key))
-                    .setVersion(0)
-                    .build()
-                    .toByteString()
-            )
-            .setKeyMaterialType(com.google.crypto.tink.proto.KeyData.KeyMaterialType.SYMMETRIC)
-            .build()
-        val keysetKey = com.google.crypto.tink.proto.Keyset.Key.newBuilder()
-            .setKeyData(keyData)
-            .setStatus(com.google.crypto.tink.proto.KeyStatusType.ENABLED)
-            .setKeyId(1)
-            .setOutputPrefixType(com.google.crypto.tink.proto.OutputPrefixType.RAW)
-            .build()
-        val keyset = com.google.crypto.tink.proto.Keyset.newBuilder()
-            .addKey(keysetKey)
-            .setPrimaryKeyId(1)
-            .build()
-        return KeysetHandle.fromKeyset(keyset)
-    }
-
     companion object {
         const val AES_KEY_BYTES = 32
         const val NONCE_BYTES = 12
-        const val TINK_PREFIX_SIZE = 5
         private const val MAC_ALGORITHM = "HMACSHA256"
     }
 }
