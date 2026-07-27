@@ -15,10 +15,17 @@ android {
     kotlinOptions { jvmTarget = "17" }
     testOptions { unitTests { all { it.useJUnitPlatform() } } }
 }
+
 dependencies {
+    implementation(project(":core:mesh"))
+    implementation(project(":core:protocol"))
+    implementation(project(":core:crypto"))
     implementation(libs.hilt.android)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.timber)
+
     ksp(libs.hilt.compiler)
+
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)

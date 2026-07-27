@@ -34,6 +34,9 @@ dependencies {
     implementation(libs.lz4.java)
     implementation(libs.hilt.android)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.security.crypto)
+    implementation(libs.timber)
+    implementation(libs.protobuf.kotlin.lite)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit.jupiter)
