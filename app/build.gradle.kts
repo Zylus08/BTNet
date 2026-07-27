@@ -108,6 +108,9 @@ dependencies {
     // DataStore
     implementation(libs.datastore.preferences)
 
+    //material
+    implementation(libs.material)
+
     // Test
     testImplementation(libs.bundles.testing.unit)
     androidTestImplementation(platform(libs.compose.bom))
